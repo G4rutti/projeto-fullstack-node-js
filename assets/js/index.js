@@ -8,7 +8,7 @@ const fetchPl =  async() => {
 
 const renderTopLeaders = async() => {
     const data = await fetchPl()
-    console.log(data)
+    console.log(data['leaders'])
 }
 
 renderTopLeaders()

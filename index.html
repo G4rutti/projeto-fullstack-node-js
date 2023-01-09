@@ -8,6 +8,63 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>Artilheiros das grandes ligas</h1>
+    <div class="filterSections">
+        <label for="liga">Nome da liga</label>
+        <select name="liga">
+            <option value="pl" selected>Premier League</option>
+            <option value="laliga" >La Liga</option>
+            <option value="liganos">Liga NOS</option>
+            <option value="seriea">Serie A</option>
+            <option value="bundesliga">Valor 3</option>
+        </select>
+        <label for="show">Mostrar</label>
+        <select name="show">
+            <option value="5" >5</option>
+            <option value="10" >10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="25" selected>25</option>
+        </select>      
+        <button>Mostrar</button>
+    </div>
+    <div class="table-main">
+        <table class="main">
+            <thead>
+                <tr>
+                    <th>Posição Ranking</th>
+                    <th>Nome</th>
+                    <th>Nacionalidade</th>
+                    <th>Idade</th>
+                    <th>Clube</th>
+                    <th>Jogos</th>
+                    <th>Gols</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>
+                        <table class="jogador">
+                            <tbody>
+                                <tr>
+                                    <td><img src="https://img.a.transfermarkt.technology/portrait/medium/418560-1656179352.jpg?lm=1" alt=""></td>
+                                </tr>
+                                <tr>
+                                    <td>Erling Haaland</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>Noruega</td>
+                    <td>21</td>
+                    <td>ManCity</td>
+                    <td>16</td>
+                    <td>22</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <script src="assets/js/index.js"></script>
 </body>
 </html>
