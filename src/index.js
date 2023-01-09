@@ -1,7 +1,6 @@
 const express = require("express")
 const bodyParser = require("body-parser")
-const Parse = require('parse/node');
-
+const cors = require('cors')
 
 
 const userRoute = require('../routes/topLeader') // importando funçoes
@@ -9,6 +8,7 @@ const userRoute = require('../routes/topLeader') // importando funçoes
 const app = express()
 const porta = process.env.PORT || 3000
 
+app.use(cors())
 app.use(bodyParser.urlencoded({extended: false}))
 
 app.get('/', (req, res) => {
