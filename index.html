@@ -10,22 +10,26 @@
 <body>
     <h1>Artilheiros das grandes ligas</h1>
     <div class="filterSections">
-        <label for="liga">Nome da liga</label>
-        <select name="liga">
-            <option value="pl" selected>Premier League</option>
-            <option value="laliga" >La Liga</option>
-            <option value="liganos">Liga NOS</option>
-            <option value="seriea">Serie A</option>
-            <option value="bundesliga">Valor 3</option>
-        </select>
-        <label for="show">Mostrar</label>
-        <select name="show">
-            <option value="5" >5</option>
-            <option value="10" >10</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-            <option value="25" selected>25</option>
-        </select>      
+        <div class="inputSection">
+            <label for="liga">Nome da liga</label>
+            <select name="liga">
+                <option value="pl" selected>Premier League</option>
+                <option value="laliga" >La Liga</option>
+                <option value="liganos">Liga NOS</option>
+                <option value="seriea">Serie A</option>
+                <option value="bundesliga">Valor 3</option>
+            </select>   
+        </div>
+        <div class="inputSection"></div>
+            <label for="show">Mostrar</label>
+            <select name="show">
+                <option value="5" >5</option>
+                <option value="10" >10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25" selected>25</option>
+            </select> 
+        </div>
         <button>Mostrar</button>
     </div>
     <div class="table-main">
@@ -41,7 +45,7 @@
                     <th>Gols</th>
                 </tr>
             </thead>
-            <tbody class="pincipalBody">
+            <tbody class="pincipalBody ">
                 <tr>
                     <td>1</td>
                     <td>
