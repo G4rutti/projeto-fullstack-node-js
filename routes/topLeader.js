@@ -4,11 +4,11 @@ const fs = require('fs')
 const {join} = require('path')
 
 
-let SaveLeader = (users, arquivo) => {
+ SaveLeader = (users, arquivo) => {
     fs.writeFileSync(arquivo,JSON.stringify(users,null,'\t'))
 }
 
-let  getLeader = (arquivo) => {
+const  getLeader = (arquivo) => {
     const data = fs.existsSync(arquivo)
         ?fs.readFileSync(arquivo)
         :[]
