@@ -3,15 +3,14 @@ const cheerio = require('cheerio')
 const fs = require('fs')
 const {join} = require('path')
 
-const filePath = join(__dirname, 'topLeadersPL.json')
 
-const SaveLeader = (users) => {
-    fs.writeFileSync(filePath,JSON.stringify(users,null,'\t'))
+let SaveLeader = (users, arquivo) => {
+    fs.writeFileSync(arquivo,JSON.stringify(users,null,'\t'))
 }
 
-const getLeader = () => {
-    const data = fs.existsSync(filePath)
-        ?fs.readFileSync(filePath)
+let  getLeader = (arquivo) => {
+    const data = fs.existsSync(arquivo)
+        ?fs.readFileSync(arquivo)
         :[]
 
     try {
@@ -27,8 +26,8 @@ const fetchData = async(url) => {
     return result.data
 }
 
-const main = async () => {
-    const content = await fetchData("https://www.transfermarkt.com.br/premier-league/torschuetzenliste/wettbewerb/GB1/saison_id/2022")
+const main = async (liga, arquivo) => {
+    const content = await fetchData(`${liga}`)
     const $ = cheerio.load(content)
     let artilheiros = []
 
@@ -49,22 +48,37 @@ const main = async () => {
             const data = {posicaoRanking, imagemArtilheiro, nomeArtilheiro, nacionalidade, idade, clube, imagemClube, jogos, gols}
             artilheiros.push(data)
         }
-        SaveLeader(artilheiros)
+        SaveLeader(artilheiros, arquivo)
     })
 }
 
 
 const userRoute = (app) =>{
-    main()
     app.get('/pl',(req, res) => {
         try {
-            const leaders = getLeader()
+            const filePath = join(__dirname, 'topLeadersPL.json')
+            const leaders = getLeader(filePath)
+            main("https://www.transfermarkt.com.br/premier-league/torschuetzenliste/wettbewerb/GB1/saison_id/2022", filePath)
             res.send({leaders})
-            return
+            return 
         } catch (error) {
             res.status(500).json({error : error})
         }
     fs.unlink("topLeadersPL.json")
+    })
+
+    app.get('/laliga',(req, res) => {
+        try {
+            const filePath = join(__dirname, 'topLeadersLaLiga.json')
+            const leaders = getLeader(filePath)
+            main("https://www.transfermarkt.com.br/laliga/torschuetzenliste/wettbewerb/ES1/saison_id/2022", filePath)
+            res.send({leaders})
+            return 
+
+        } catch (error) {
+            res.status(500).json({error : error})
+        }
+    fs.unlink("topLeadersLaLiga.json")
     })
 }
 
