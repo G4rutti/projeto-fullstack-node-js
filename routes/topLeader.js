@@ -27,7 +27,7 @@ const fetchData = async(url) => {
 }
 
 const main = async (liga, arquivo) => {
-    const content = await fetchData(`${liga}`)
+    const content = await fetchData(liga)
     const $ = cheerio.load(content)
     let artilheiros = []
 
@@ -57,10 +57,9 @@ const userRoute = (app) =>{
     app.get('/pl',(req, res) => {
         try {
             const filePath = join(__dirname, 'topLeadersPL.json')
-            const leaders = getLeader(filePath)
             main("https://www.transfermarkt.com.br/premier-league/torschuetzenliste/wettbewerb/GB1/saison_id/2022", filePath)
-            res.send({leaders})
-            return 
+            const leaders = getLeader(filePath)
+            return res.send({leaders})
         } catch (error) {
             res.status(500).json({error : error})
         }
@@ -70,11 +69,9 @@ const userRoute = (app) =>{
     app.get('/laliga',(req, res) => {
         try {
             const filePath = join(__dirname, 'topLeadersLaLiga.json')
-            const leaders = getLeader(filePath)
             main("https://www.transfermarkt.com.br/laliga/torschuetzenliste/wettbewerb/ES1/saison_id/2022", filePath)
-            res.send({leaders})
-            return 
-
+            const leaders = getLeader(filePath)
+            return res.send({leaders})
         } catch (error) {
             res.status(500).json({error : error})
         }
